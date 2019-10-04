@@ -17,23 +17,19 @@ router.post("/signup", (req, res, next) => {
     originalPassword.match(/[0-9]/) === null
   ) {
     // send error JSON if any of the fields is empty or password doesn't contain a number
-    res
-      .status(401)
-      .json({
-        message:
-          "All fields need to be filled and password must contain a number."
-      });
+    res.status(401).json({
+      message:
+        "All fields need to be filled and password must contain a number."
+    });
     return;
   }
 
   User.findOne({ email })
     .then(foundUser => {
       if (foundUser !== null) {
-        res
-          .status(401)
-          .json({
-            message: "A user with the same email is already registered!"
-          });
+        res.status(401).json({
+          message: "A user with the same email is already registered!"
+        });
         return;
       }
 

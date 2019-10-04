@@ -2,17 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 import { Switch, NavLink, Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-
 import axios from "axios";
-
-import Signup from "./components/user-pages/Signup";
 import Login from "./components/user-pages/Login";
-import Home from "./components/Home";
-import Logout from "./components/util/logout";
+import ConnectedNav from "./components/util/connectedNav";
 import Dashboard from "./components/pages/dashboard";
 import Teams from "./components/pages/teams";
-import Projects from "./components/pages/projects";
-import Timesheets from "./components/pages/projects";
 import NewUser from "./components/pages/newuser";
 
 class App extends Component {
@@ -53,24 +47,13 @@ class App extends Component {
       <div className="App">
         {this.state.currentUser ? (
           <header>
-            <nav>
-              <NavLink to="/dashboard"> Dashboard </NavLink>
-              <NavLink to="/teams"> Teams </NavLink>
-              <NavLink to="/projects"> Projects </NavLink>
-              <NavLink to="/timesheets"> Timesheets </NavLink>
-              <Logout
-                currentUser={this.state.currentUser}
-                onUserChange={userDoc => this.syncCurrentUser(userDoc)}
-              />
-            </nav>
+            <ConnectedNav
+              currentUser={this.state.currentUser}
+              onUserChange={userDoc => this.syncCurrentUser(userDoc)}
+            />
           </header>
         ) : (
-          <header>
-            <nav>
-              <NavLink to="/"> Home </NavLink>
-              <NavLink to="/login-page"> Login </NavLink>
-            </nav>
-          </header>
+          <header></header>
         )}
 
         <Switch>
@@ -91,16 +74,10 @@ class App extends Component {
             path="/teams/new"
             render={() => this.isAuthenticated(<NewUser />)}
           />
+
           <Route
-            path="/projects"
-            render={() => this.isAuthenticated(<Projects />)}
-          />
-          <Route
-            path="/timesheets"
-            render={() => this.isAuthenticated(<Timesheets />)}
-          />
-          <Route
-            path="/login-page"
+            exact
+            path="/"
             render={() =>
               this.isNotAuthenticated(
                 <Login

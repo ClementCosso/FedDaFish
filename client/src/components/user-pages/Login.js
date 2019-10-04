@@ -59,6 +59,7 @@ class Login extends Component {
             type="email"
             name="email"
             placeholder="superstar@ironhack.com"
+            onPressEnter={event => this.handleSubmit(event)}
           />
 
           <label> Password: </label>
@@ -68,6 +69,7 @@ class Login extends Component {
             type="password"
             name="originalPassword"
             placeholder="****"
+            onPressEnter={event => this.handleSubmit(event)}
           />
           <button>Log In</button>
         </form>
