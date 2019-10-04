@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const Project = require("../models/Project");
-const Calendar = require("../models/Calendar");
+
 const bcrypt = require("bcrypt");
 
 const bcryptSalt = 10;

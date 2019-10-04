@@ -1,8 +1,13 @@
 import axios from "axios";
 
+const ressource = axios.create({
+  baseURL: "http://localhost:3001/people",
+  withCredentials: true
+});
+
 const api = {
   getTeams: function() {
-    return axios.get("http://localhost:3001/people").then(res => res.data);
+    return ressource.get("/people").then(res => res.data);
   }
   // getRandomBeer: function() {
   //   return axios

@@ -3,35 +3,18 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    username: { type: String, required: true },
-    hidden: Boolean,
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: {
       type: String,
       match: /^.+@.+\..+$/,
       required: true,
       unique: true
     },
-
     password: { type: String, required: true },
-    avatar: { type: String, default: "images/pangong-tso.png" },
     image: { type: String, default: "images/pangong-tso.png" },
     quote: { type: String, required: true },
-    administrator: Boolean,
-    teamleader: { type: Boolean, required: true },
-    employee: { type: Boolean, required: true },
-    role: {
-      type: String,
-      enum: [
-        "Développeur",
-        "Data Scientist",
-        "UX/UI",
-        "Projet",
-        "Finance",
-        "Insigths & Mesure",
-        "Autre"
-      ],
-      required: true
-    }
+    admin: Boolean
   },
   {
     timestamps: {
